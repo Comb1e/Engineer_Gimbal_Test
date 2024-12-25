@@ -1,0 +1,6 @@
+E:/RM/2025/Engineer_Gimbal_Test/cmake-build-debug/CMakeFiles/Engineer_Gimbal_Test.elf.dir
+E:/RM/2025/Engineer_Gimbal_Test/cmake-build-debug/CMakeFiles/edit_cache.dir
+E:/RM/2025/Engineer_Gimbal_Test/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+E:/RM/2025/Engineer_Gimbal_Test/cmake-build-debug/bin_dsp/CMakeFiles/CMSISDSP.dir
+E:/RM/2025/Engineer_Gimbal_Test/cmake-build-debug/bin_dsp/CMakeFiles/edit_cache.dir
+E:/RM/2025/Engineer_Gimbal_Test/cmake-build-debug/bin_dsp/CMakeFiles/rebuild_cache.dir
