@@ -6,6 +6,7 @@
 #define __GLOBALCFG_H
 
 #define ARM_ROLL_IMU        huart1  //460800
+#define RC_UART             huart3
 
 // --------------------- CAN 500Hz--------------------- //
 // ------------------- CAN1 ------------------- //
@@ -29,14 +30,8 @@
 //包5
 #define COMM_DATA_CAN                   hcan2
 
-#define COMM_CAN_BASIC_RX_STDID         0x301
-#define COMM_CAN_MORE_RX_STDID          0x302
-
-#define COMM_CAN_BASIC_TX_STDID         0x303
-#define COMM_CAN_MORE_TX_STDID          0x304
-
-#define COMM_CAN_CUSTOM_RX_STDID        0x305
-#define COMM_CAN_CUSTOM_TX_STDID        0x306
+#define GIMBAL_TO_CHASSIS_RX_CAN2_STDID (0X301)
+#define GIMBAL_TO_CHASSIS_TX_CAN2_STDID (0X303)
 
 // ------------------- IIC ------------------- //
 
@@ -45,7 +40,7 @@
 #define IIC_SDA_PIN         GPIO_PIN_11
 
 #define AUTO_REVIVE         1
-#define RC_ENABLE           0
+#define RC_ENABLE           1
 #define DJI_MOTOR_SERVICE   1
 
 /*---------------------------- C Scope --------------------------- */

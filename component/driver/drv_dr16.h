@@ -14,7 +14,7 @@
 extern "C" {
 #endif
 
-#define DR16_BUFF_LEN (25)
+#define DR16_BUFF_LEN (18)
 
 ///* ------------------- RC Switch Definition--------------------- */
 //
@@ -79,7 +79,8 @@ enum RC_SW {
 
 //#pragma pack(1) 告诉编译器以字节对齐数据 要用#pragma pack()恢复设置
 #pragma pack(1)
-typedef struct {
+typedef struct
+{
     uint16_t ch0: 11;//keil中不兼容，待看
     uint16_t ch1: 11;
     uint16_t ch2: 11;
@@ -168,13 +169,14 @@ typedef struct{
 
 typedef struct{
     bool is_lost;
-    dr16_raw_info_t raw;
+    uint8_t raw[DR16_BUFF_LEN];
     dr16_info_t last_rc_info;//接收
     dr16_info_t rc_info;//接收
     event_t event;
     UART_HandleTypeDef *_huart;
 } rc_device_t;
 
+extern rc_device_t g_rc;
 
 //总函数
 void rc_device_init(rc_device_t * rc_dev, UART_HandleTypeDef *_huart, pUART_RxEventCallbackTypeDef rc_pCallback);

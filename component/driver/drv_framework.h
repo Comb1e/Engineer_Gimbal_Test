@@ -31,7 +31,8 @@ public:
     struct pid uplift_syn_follower_torque_pid={};
 
     //kine
-    typedef struct {
+    typedef struct
+    {
         float arm_yaw;      //yaw
         float arm_pitch;      //yaw
         float slide;        //y
@@ -42,7 +43,8 @@ public:
     }framework_kine_motor_set_rounds_t;
     framework_kine_motor_set_rounds_t set_rounds={};
 
-    typedef struct{
+    typedef struct
+    {
         uint32_t uplift;
         uint32_t extend;
         uint32_t slide;
@@ -160,6 +162,11 @@ public:
 
     bool uplift_up_movement_to_avoid_arm_clash(uint32_t up_movement_ms);
 
+    void Uplift_Reset();
+    void Arm_Pitch_Reset();
+    void Arm_Yaw_Reset();
+    void Extend_Reset();
+    void Slide_Reset();
 };
 
 /*---------------------------- C Scope ---------------------------*/

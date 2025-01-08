@@ -8,27 +8,27 @@
 #include "drv_key.h"
 #include "bsp_led.h"
 
-void communicationTask(void *argument) {
-    g_arm.Arm_init();
+void communicationTask(void *argument)
+{
+    communication.Init();
+    communication.PTR_Init(&comm_can,&comm_usb,&g_arm,&g_rc);
+    communication.arm->Arm_init();
     osStatus_t stat;
-    osSemaphoreAcquire(g_arm.communication.can.can_basic_dev.rx.semaphore,osWaitForever); // all the first
-    g_arm.set_communication_basic_data_to_rx_data();
-    g_arm.set_communication_to_arm_pose();
-    g_arm.set_arm_reset();
+    osSemaphoreAcquire(communication.can->can_device.rx.semaphore,osWaitForever);// all the first
+    communication.arm->set_arm_reset();
     set_blue_on();
-    for(;;) {
-        stat = osSemaphoreAcquire(g_arm.communication.can.can_basic_dev.rx.semaphore,6);//这里只是检查basic，没有检查其它包
-        if(osOK == stat) {
+    for(;;)
+    {
+        stat = osSemaphoreAcquire(communication.can->can_device.rx.semaphore,6);
+        if(osOK == stat)
+        {
             // 正常模式的中间量
-            g_arm.set_communication_basic_data_to_rx_data();
-            g_arm.set_communication_to_arm_pose();
+            communication.Update_Data();
             set_blue_on();
-        }else{
-            set_blue_off();
         }
-        if(g_arm.is_fk_data_valid) {
-            g_arm.set_FK_data_to_communication();
-            g_arm.send_FK_data_to_communication();
+        else
+        {
+            set_blue_off();
         }
         osDelay(4);
     }

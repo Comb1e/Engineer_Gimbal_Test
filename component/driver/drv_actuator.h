@@ -11,7 +11,8 @@
 
 /*---------------------------- C++ Scope ---------------------------*/
 
-class Actuator {
+class Actuator
+{
 public:
     //initial
     DJI_Motor_2006 arm_roll;
@@ -21,14 +22,16 @@ public:
     bool is_x1_use_IMU_fb = false;
 
     //kine
-    typedef struct {
+    typedef struct
+    {
         float arm_roll;     //roll
         float pitch_roll_b; //  back   up
         float pitch_roll_f; //  front  down
     }actuator_motor_set_rounds_t;
     actuator_motor_set_rounds_t set_rounds={};
 
-    typedef struct{
+    typedef struct
+    {
         uint32_t arm_roll;
         uint32_t y_x2;
     }reset_step_t;
@@ -97,8 +100,8 @@ public:
     bool is_y_x2_at_initial_pos();
     bool is_actuator_at_initial_pos();
 
-private:
-
+    void Arm_Roll_Reset();
+    void Y_X2_Reset();
 };
 
 /*---------------------------- C Scope ---------------------------*/

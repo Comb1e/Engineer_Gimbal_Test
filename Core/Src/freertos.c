@@ -201,10 +201,10 @@ osSemaphoreId_t dr16UpdateBinarySemHandle;
 const osSemaphoreAttr_t dr16UpdateBinarySem_attributes = {
   .name = "dr16UpdateBinarySem"
 };
-/* Definitions for CommCanBasicBinarySem */
-osSemaphoreId_t CommCanBasicBinarySemHandle;
-const osSemaphoreAttr_t CommCanBasicBinarySem_attributes = {
-  .name = "CommCanBasicBinarySem"
+/* Definitions for CommCanBinarySem */
+osSemaphoreId_t CommCanBinarySemHandle;
+const osSemaphoreAttr_t CommCanBinarySem_attributes = {
+  .name = "CommCanBinarySem"
 };
 /* Definitions for upliftLeftBinarySem */
 osSemaphoreId_t upliftLeftBinarySemHandle;
@@ -266,11 +266,6 @@ osSemaphoreId_t armRollBinarySemHandle;
 const osSemaphoreAttr_t armRollBinarySem_attributes = {
   .name = "armRollBinarySem"
 };
-/* Definitions for CommCanMoreBinarySem */
-osSemaphoreId_t CommCanMoreBinarySemHandle;
-const osSemaphoreAttr_t CommCanMoreBinarySem_attributes = {
-  .name = "CommCanMoreBinarySem"
-};
 /* Definitions for armYawDMBinarySem */
 osSemaphoreId_t armYawDMBinarySemHandle;
 const osSemaphoreAttr_t armYawDMBinarySem_attributes = {
@@ -280,11 +275,6 @@ const osSemaphoreAttr_t armYawDMBinarySem_attributes = {
 osSemaphoreId_t armPitchDMBinarySemHandle;
 const osSemaphoreAttr_t armPitchDMBinarySem_attributes = {
   .name = "armPitchDMBinarySem"
-};
-/* Definitions for CommCanCustomBinarySem */
-osSemaphoreId_t CommCanCustomBinarySemHandle;
-const osSemaphoreAttr_t CommCanCustomBinarySem_attributes = {
-  .name = "CommCanCustomBinarySem"
 };
 /* Definitions for can1_tx_cnt_sem */
 osSemaphoreId_t can1_tx_cnt_semHandle;
@@ -340,58 +330,52 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the semaphores(s) */
   /* creation of dr16UpdateBinarySem */
-  dr16UpdateBinarySemHandle = osSemaphoreNew(1, 0, &dr16UpdateBinarySem_attributes);
+  dr16UpdateBinarySemHandle = osSemaphoreNew(1, 1, &dr16UpdateBinarySem_attributes);
 
-  /* creation of CommCanBasicBinarySem */
-  CommCanBasicBinarySemHandle = osSemaphoreNew(1, 0, &CommCanBasicBinarySem_attributes);
+  /* creation of CommCanBinarySem */
+  CommCanBinarySemHandle = osSemaphoreNew(1, 1, &CommCanBinarySem_attributes);
 
   /* creation of upliftLeftBinarySem */
-  upliftLeftBinarySemHandle = osSemaphoreNew(1, 0, &upliftLeftBinarySem_attributes);
+  upliftLeftBinarySemHandle = osSemaphoreNew(1, 1, &upliftLeftBinarySem_attributes);
 
   /* creation of upliftRightBinarySem */
-  upliftRightBinarySemHandle = osSemaphoreNew(1, 0, &upliftRightBinarySem_attributes);
+  upliftRightBinarySemHandle = osSemaphoreNew(1, 1, &upliftRightBinarySem_attributes);
 
   /* creation of extendLeftBinarySem */
-  extendLeftBinarySemHandle = osSemaphoreNew(1, 0, &extendLeftBinarySem_attributes);
+  extendLeftBinarySemHandle = osSemaphoreNew(1, 1, &extendLeftBinarySem_attributes);
 
   /* creation of extendRightBinarySem */
-  extendRightBinarySemHandle = osSemaphoreNew(1, 0, &extendRightBinarySem_attributes);
+  extendRightBinarySemHandle = osSemaphoreNew(1, 1, &extendRightBinarySem_attributes);
 
   /* creation of slideBinarySem */
-  slideBinarySemHandle = osSemaphoreNew(1, 0, &slideBinarySem_attributes);
+  slideBinarySemHandle = osSemaphoreNew(1, 1, &slideBinarySem_attributes);
 
   /* creation of armYawBinarySem */
-  armYawBinarySemHandle = osSemaphoreNew(1, 0, &armYawBinarySem_attributes);
+  armYawBinarySemHandle = osSemaphoreNew(1, 1, &armYawBinarySem_attributes);
 
   /* creation of yawExtendBinarySem */
-  yawExtendBinarySemHandle = osSemaphoreNew(1, 0, &yawExtendBinarySem_attributes);
+  yawExtendBinarySemHandle = osSemaphoreNew(1, 1, &yawExtendBinarySem_attributes);
 
   /* creation of pitchRollUpBinarySem */
-  pitchRollUpBinarySemHandle = osSemaphoreNew(1, 0, &pitchRollUpBinarySem_attributes);
+  pitchRollUpBinarySemHandle = osSemaphoreNew(1, 1, &pitchRollUpBinarySem_attributes);
 
   /* creation of pitchRollDownBinarySem */
-  pitchRollDownBinarySemHandle = osSemaphoreNew(1, 0, &pitchRollDownBinarySem_attributes);
+  pitchRollDownBinarySemHandle = osSemaphoreNew(1, 1, &pitchRollDownBinarySem_attributes);
 
   /* creation of cameraYawBinarySem */
-  cameraYawBinarySemHandle = osSemaphoreNew(1, 0, &cameraYawBinarySem_attributes);
+  cameraYawBinarySemHandle = osSemaphoreNew(1, 1, &cameraYawBinarySem_attributes);
 
   /* creation of armRollImuBinarySem */
-  armRollImuBinarySemHandle = osSemaphoreNew(1, 0, &armRollImuBinarySem_attributes);
+  armRollImuBinarySemHandle = osSemaphoreNew(1, 1, &armRollImuBinarySem_attributes);
 
   /* creation of armRollBinarySem */
-  armRollBinarySemHandle = osSemaphoreNew(1, 0, &armRollBinarySem_attributes);
-
-  /* creation of CommCanMoreBinarySem */
-  CommCanMoreBinarySemHandle = osSemaphoreNew(1, 0, &CommCanMoreBinarySem_attributes);
+  armRollBinarySemHandle = osSemaphoreNew(1, 1, &armRollBinarySem_attributes);
 
   /* creation of armYawDMBinarySem */
-  armYawDMBinarySemHandle = osSemaphoreNew(1, 0, &armYawDMBinarySem_attributes);
+  armYawDMBinarySemHandle = osSemaphoreNew(1, 1, &armYawDMBinarySem_attributes);
 
   /* creation of armPitchDMBinarySem */
-  armPitchDMBinarySemHandle = osSemaphoreNew(1, 0, &armPitchDMBinarySem_attributes);
-
-  /* creation of CommCanCustomBinarySem */
-  CommCanCustomBinarySemHandle = osSemaphoreNew(1, 0, &CommCanCustomBinarySem_attributes);
+  armPitchDMBinarySemHandle = osSemaphoreNew(1, 1, &armPitchDMBinarySem_attributes);
 
   /* creation of can1_tx_cnt_sem */
   can1_tx_cnt_semHandle = osSemaphoreNew(3, 3, &can1_tx_cnt_sem_attributes);

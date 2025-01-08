@@ -5,28 +5,31 @@
 #include "task_rc.h"
 
 #if RC_ENABLE
-extern rc_device_t g_rc;
-extern uint8_t dr16_buff[DR16_BUFF_LEN];
 
 uint32_t rc_error_cnt = 0;
 uint32_t rc_lost_cnt = 0;
 //uint32_t rx_cnt = 0;
 
-void rcReceiveTask(void *argument){
+void rcReceiveTask(void *argument)
+{
     static osStatus_t stat;
     rc_device_init(&g_rc,&RC_UART,dr16_update_callback);
-    HAL_UART_RegisterCallback(g_rc._huart, HAL_UART_ERROR_CB_ID, dr16_unlink_restart);
+    HAL_UART_RegisterRxEventCallback(g_rc._huart, dr16_update_callback);
     osSemaphoreAcquire(dr16UpdateBinarySemHandle, 0);
 
-    for (;;) {
+    for (;;)
+    {
         dr16_start_receive_dma(&g_rc);
         stat = osSemaphoreAcquire(dr16UpdateBinarySemHandle, 15);
-        if (stat == osOK) {
-            if (rc_update(&g_rc)) {
+        if (stat == osOK)
+        {
+            if (rc_update(&g_rc))
+            {
                 set_rc_connect(&g_rc);
             }
         }
-        else {
+        else
+        {
             set_rc_lost(&g_rc);
             rc_lost_cnt++;
         }

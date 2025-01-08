@@ -3,6 +3,8 @@
 //
 
 #include "drv_framework.h"
+#include "drv_arm.h"
+#include "drv_comm.h"
 #include "GlobalCfg.h"
 /*  俯视图
  *
@@ -590,7 +592,8 @@ void Framework::set_framework_reset() {
     set_reset_pid();
 }
 
-void Framework::extend_motors_protection(){
+void Framework::extend_motors_protection()
+{
     if(set_rounds.uplift_l < FRAME_EXTEND_L_MIN_ROUNDS+3.0f && set_rounds.uplift_r < FRAME_EXTEND_R_MIN_ROUNDS+3.0f)
     {//圈数到
         if(ABS(set_rounds.uplift_l-uplift_l.get_motor_total_rounds())>0.2f || (ABS(set_rounds.uplift_r-uplift_r.get_motor_total_rounds())>0.2f))
@@ -676,5 +679,4 @@ bool Framework::check_all_motors_safe(){
         return true;
     }
 }
-
 

@@ -180,23 +180,26 @@ bool Actuator::y_x2_reset_to_get_offset()
 }
 
 // ------------------------------------------ IK ------------------------------------------ //
-void Actuator::actuator_set_x1(float x1_deg) {
+void Actuator::actuator_set_x1(float x1_deg)
+{
     VAL_LIMIT(x1_deg, ACTUATOR_X1_MIN_DEG, ACTUATOR_X1_MAX_DEG);
     set_rounds.arm_roll = x1_deg * MOTOR_ROTATING_RATIO_M2006 * (1.0f / X1_DEDUCTION_RATIO) / 360.0f;
     VAL_LIMIT(set_rounds.arm_roll, ACTUATOR_X1_MIN_DEG* MOTOR_ROTATING_RATIO_M2006 * (1.0f / X1_DEDUCTION_RATIO) / 360.0f,
-              ACTUATOR_X1_MAX_DEG* MOTOR_ROTATING_RATIO_M2006 * (1.0f / X1_DEDUCTION_RATIO) / 360.0f);
-    if(!arm_roll_IMU.is_imu_lost()){
-        if(is_x1_use_IMU_fb){
-            float speed_set = pid_calculate(
-                    &arm_roll.posPid,
-                    arm_roll_IMU.get_total_rounds_without_offset(IMU::imu_e::x)*360.0f - HORIZONTAL_ARM_ROLL_DEG,
-                    x1_deg);
+                                   ACTUATOR_X1_MAX_DEG* MOTOR_ROTATING_RATIO_M2006 * (1.0f / X1_DEDUCTION_RATIO) / 360.0f);
+    if(!arm_roll_IMU.is_imu_lost())
+    {
+        if(is_x1_use_IMU_fb)
+        {
+            float speed_set = pid_calculate(&arm_roll.posPid,arm_roll_IMU.get_total_rounds_without_offset(IMU::imu_e::x)*360.0f - HORIZONTAL_ARM_ROLL_DEG,x1_deg);
             arm_roll.set_motor_speed(speed_set);
         }
-        else{
+        else
+        {
             arm_roll.set_motor_rounds(set_rounds.arm_roll);
         }
-    }else{
+    }
+    else
+    {
         arm_roll.set_motor_rounds(set_rounds.arm_roll);
     }
 }
@@ -322,3 +325,5 @@ bool Actuator::check_all_motors_safe(){
         return true;
     }
 }
+
+

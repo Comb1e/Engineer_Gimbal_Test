@@ -9,11 +9,9 @@
 
 Arm g_arm;
 
-Arm::Arm():framework(Framework()),actuator(Actuator()) {
-    kine.const_yaw_2_pitch_mm << ARM_YAW_2_PITCH_LEN_X_MM,0,ARM_YAW_2_PITCH_LEN_Z_MM;
-    kine.const_pitch_2_x1_mm << ARM_PITCH_2_X1_LEN_X_MM,0,0;
-    kine.const_x1_2_yx2_mm << X1_2_YX2_LEN_X_MM,0,0;
-    kine.const_yx2_mm << YX2_LEN_X_MM,0,0;
+Arm::Arm():framework(Framework()),actuator(Actuator())
+{
+
 }
 
 void slide_speed_filter() {
@@ -25,11 +23,14 @@ void slide_speed_filter() {
 void Arm::Arm_init() {
     framework.framework_init();
     actuator.actuator_init();
-    communication.Communication_init();
-    kine_init();
     set_reset_pid();//必须在actuator后面 保证初始pid
     framework.slide.process_data_ptr_fun_register(slide_speed_filter);
     is_init = true;
+}
+
+void Arm::Update_Data()
+{
+    this->current_joint.extend_joint = (this->framework.extend_l.motor_data.total_rounds);
 }
 
 // --------------------------- 最顶层设置 --------------------------- //
@@ -77,28 +78,22 @@ void Arm::set_arm_pose(dof6_e dofE, float set_mm_deg){
 
 // --------------------------- reset --------------------------- //
 
-void Arm::set_arm_reset() {
+void Arm::set_arm_reset()
+{
     is_enable = true;
-    is_fk_data_valid = false;
     framework.set_framework_reset();//有reset pid
     actuator.set_actuator_reset();//有reset pid
     set_reset_pid();
-    kine.set.act.euler_x1_deg = 0;//处理多解
-    kine.set.act.euler_y_deg = 0;
-    kine.set.act.euler_x2_deg = 0;
     arm_reset_num++;
 }
 
-void Arm::set_actuator_single_reset(){
-    is_fk_data_valid = false;
+void Arm::set_actuator_single_reset()
+{
     actuator.set_actuator_reset();
-    kine.set.act.euler_x1_deg = 0;//处理多解
-    kine.set.act.euler_y_deg = 0;
-    kine.set.act.euler_x2_deg = 0;
 }
 
-void Arm::set_framework_single_reset(){
-    is_fk_data_valid = false;
+void Arm::set_framework_single_reset()
+{
     framework.set_framework_reset();
 }
 
