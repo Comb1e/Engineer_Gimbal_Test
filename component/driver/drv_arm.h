@@ -69,7 +69,6 @@ public:
     arm_joint_t current_joint;
 
     void Arm_init();
-    void Update_Data();
 
     //get
     bool is_arm_offset_ok();
@@ -93,6 +92,8 @@ public:
     bool is_arm_reset_all_ok();
 
     void check_motors_overheat();
+
+    void Update_Arm_Current_Position();
 
 private:
     // DH parameters

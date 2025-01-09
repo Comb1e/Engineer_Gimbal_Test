@@ -483,7 +483,8 @@ void Framework::framework_set_arm_yaw(float arm_yaw_deg) {
     arm_yaw.set_motor_rounds(set_rounds.arm_yaw);
 }
 
-void Framework::framework_set_arm_pitch(float arm_pitch_deg) {
+void Framework::framework_set_arm_pitch(float arm_pitch_deg)
+{
     VAL_LIMIT(arm_pitch_deg, ARM_PITCH_MIN_DEG, ARM_PITCH_MAX_DEG);
     set_rounds.arm_pitch = ARM_PITCH_MIN_ROUNDS + (arm_pitch_deg - ARM_PITCH_MIN_DEG) / (ARM_PITCH_MAX_DEG - ARM_PITCH_MIN_DEG) * (ARM_PITCH_MAX_ROUNDS - ARM_PITCH_MIN_ROUNDS) + ARM_PITCH_ZERO_OFFSET_ROUNDS;
     VAL_LIMIT(set_rounds.arm_pitch,ARM_PITCH_MIN_ROUNDS+ARM_PITCH_ZERO_OFFSET_ROUNDS, ARM_PITCH_MAX_ROUNDS+ARM_PITCH_ZERO_OFFSET_ROUNDS);

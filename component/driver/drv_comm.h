@@ -20,6 +20,8 @@ extern "C" {
 #define USB_FRAME_HEAD 0x60
 #define USB_FRAME_TAIL 0x50
 
+#define USB_INFO_TX_BUF_NUM 55
+
 #pragma pack(1)
 typedef struct
 {
@@ -43,9 +45,6 @@ typedef struct
     uint8_t is_left_pump_open : 1;
     uint8_t is_right_pump_open : 1;
 }can_tx_data_t;//44位
-#pragma pack()
-
-#pragma pack(1)
 
 typedef struct
 {
@@ -112,21 +111,28 @@ public:
     void Init(CAN_HandleTypeDef *hcan);
 
     friend void Comm_Can_RX_Callback(CAN *can_device,uint8_t *data);
+
+    friend class Communication;
 };
 
 void Comm_Can_RX_Callback(CAN *can_device,uint8_t *data);
 
-class Comm_USB{
+class Comm_USB
+{
 public:
+    Comm_USB()= default;
 
     bool is_enable = false;
     bool is_lost = true;
 
     usb_rx_raw_t rx_raw={};
     usb_tx_t tx_data={};
-public:
-    Comm_USB()= default;
+
     void Init();
+    void Receive_Data();
+    void Transmit_Data();
+
+    friend class Communication;
 };
 
 
@@ -134,6 +140,8 @@ class Communication
 {
 public:
     explicit Communication();
+
+    bool lost_flag;
 
     Comm_CAN *can;
     Comm_USB *usb;
@@ -143,6 +151,9 @@ public:
     void PTR_Init(Comm_CAN *comm_can,Comm_USB *comm_usb,Arm *Arm,rc_device_t *rc);
     void Init();
     void Update_Data();
+    void Update_Lost_Flag();
+    bool Check_Lost();
+    void Send_MSG();
 };
 
 extern Comm_CAN comm_can;

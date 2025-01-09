@@ -13,22 +13,22 @@ void communicationTask(void *argument)
     communication.Init();
     communication.PTR_Init(&comm_can,&comm_usb,&g_arm,&g_rc);
     communication.arm->Arm_init();
-    osStatus_t stat;
-    osSemaphoreAcquire(communication.can->can_device.rx.semaphore,osWaitForever);// all the first
     communication.arm->set_arm_reset();
     set_blue_on();
     for(;;)
     {
-        stat = osSemaphoreAcquire(communication.can->can_device.rx.semaphore,6);
-        if(osOK == stat)
+        communication.Update_Lost_Flag();
+        if(communication.Check_Lost())
         {
-            // 正常模式的中间量
-            communication.Update_Data();
-            set_blue_on();
+            set_blue_off();
         }
         else
         {
-            set_blue_off();
+            communication.arm->Update_Arm_Current_Position();
+            communication.usb->Receive_Data();
+            communication.Update_Data();
+            communication.Send_MSG();
+            set_blue_on();
         }
         osDelay(4);
     }

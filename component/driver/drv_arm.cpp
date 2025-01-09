@@ -28,11 +28,6 @@ void Arm::Arm_init() {
     is_init = true;
 }
 
-void Arm::Update_Data()
-{
-    this->current_joint.extend_joint = (this->framework.extend_l.motor_data.total_rounds);
-}
-
 // --------------------------- 最顶层设置 --------------------------- //
 void Arm::set_arm_arm_yaw_deg(float set_deg){
     VAL_LIMIT(set_deg,ARM_YAW_MIN_DEG,ARM_YAW_MAX_DEG);
@@ -185,6 +180,19 @@ void Arm::check_motors_overheat(){
     else{
         is_motors_overheat = false;
     }
+}
+
+void Arm::Update_Arm_Current_Position()
+{
+    this->current_joint.arm_pitch_joint = (this->framework.arm_pitch.get_motor_total_rounds() - ARM_PITCH_ZERO_OFFSET_ROUNDS - ARM_PITCH_MIN_ROUNDS) / (ARM_PITCH_MAX_ROUNDS - ARM_PITCH_MIN_ROUNDS) * (ARM_PITCH_MAX_DEG - ARM_PITCH_MIN_DEG) + ARM_PITCH_MIN_DEG;
+    this->current_joint.arm_yaw_joint = (this->framework.arm_yaw.get_motor_total_rounds() - ARM_YAW_ZERO_OFFSET_ROUNDS - ARM_YAW_MIN_ROUNDS) / (ARM_YAW_MAX_ROUNDS - ARM_YAW_MIN_ROUNDS) * (ARM_YAW_MAX_DEG - ARM_YAW_MIN_DEG) + ARM_YAW_MIN_DEG;
+    this->current_joint.uplift_joint = ((this->framework.uplift_l.get_motor_total_rounds() - FRAME_UPLIFT_L_MIN_ROUNDS) + (this->framework.uplift_r.get_motor_total_rounds() - FRAME_UPLIFT_R_MIN_ROUNDS)) / 2 * (FRAME_UPLIFT_MAX_MM - FRAME_UPLIFT_MIN_MM) + FRAME_UPLIFT_MIN_MM;
+    this->current_joint.extend_joint = ((this->framework.extend_l.get_motor_total_rounds() - FRAME_EXTEND_L_MIN_ROUNDS) + (this->framework.extend_r.get_motor_total_rounds() - FRAME_EXTEND_R_MIN_ROUNDS)) / 2 * (FRAME_EXTEND_MAX_MM - FRAME_EXTEND_MIN_MM) + FRAME_EXTEND_MIN_MM;
+    this->current_joint.slide_joint = (this->framework.slide.get_motor_total_rounds() - FRAME_SLIDE_MIN_ROUNDS) * (FRAME_SLIDE_MAX_MM - FRAME_SLIDE_MIN_MM) + FRAME_SLIDE_MIN_MM;
+
+    this->current_joint.arm_roll_joint = this->actuator.get_actuator_x1_deg();
+    this->current_joint.roll_joint = this->actuator.get_actuator_x2_deg();
+    this->current_joint.pitch_joint = this->actuator.get_actuator_y_deg();
 }
 
 

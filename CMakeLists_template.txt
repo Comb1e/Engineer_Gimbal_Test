@@ -63,6 +63,8 @@ include_directories(${includes}
     component/user/peripheral
     component/user/app
     component/Matrix_Robotics
+    USB_DEVICE/App
+    USB_DEVICE/Target
 )
 
 add_definitions(${defines})
@@ -70,6 +72,7 @@ add_definitions(${defines})
 file(GLOB_RECURSE SOURCES ${sources}
     "bsp/*.*"
     "component/*.*"
+    "USB_DEVICE/*.*"
 )
 
 #DSP-Old

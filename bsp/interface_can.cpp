@@ -163,17 +163,21 @@ void CAN::can_rx_tx_add(uint32_t rx_stdid, osSemaphoreId_t rxSem, can_rx_callbac
     can_tx_add(tx_stdid,tx_buff,tx_len);
 }
 
-osStatus_t CAN::send_can_msg(){
-    if(tx.is_enable){
+osStatus_t CAN::send_can_msg()
+{
+    if(tx.is_enable)
+    {
         taskENTER_CRITICAL();
         osStatus_t stat;
-        if(hcan==&hcan1){
+        if(hcan==&hcan1)
+        {
             stat = osMessageQueuePut(can1SendQueueHandle,&this->tx,0,0);
         }else{
             stat = osMessageQueuePut(can2SendQueueHandle,&this->tx,0,0);
         }
         taskEXIT_CRITICAL();
-        if(stat == osOK) {
+        if(stat == osOK)
+        {
             tx.cnt++;
         }
         return stat;

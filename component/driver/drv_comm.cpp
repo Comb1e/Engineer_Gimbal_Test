@@ -4,6 +4,8 @@
 
 #include "drv_comm.h"
 
+#include "usbd_cdc_if.h"
+
 Comm_CAN comm_can;
 Comm_USB comm_usb;
 Communication communication;
@@ -28,6 +30,23 @@ void Comm_Can_RX_Callback(CAN *can_device,uint8_t *data)
 void Comm_USB::Init()
 {
 
+}
+
+void Comm_USB::Receive_Data()
+{
+    if (USBD_OK == CDC_Receive_FS_Mine_Del((uint8_t *) &this->rx_raw, NULL))
+    {
+        __NOP();
+    }
+    else
+    {
+        __NOP();
+    }
+}
+
+void Comm_USB::Transmit_Data()
+{
+    CDC_Transmit_FS_Mine_Del((uint8_t *)&this->tx_data, USB_INFO_TX_BUF_NUM);
 }
 
 Communication::Communication()
@@ -61,6 +80,40 @@ void Communication::Update_Data()
 
     this->usb->tx_data.frame_head = USB_FRAME_HEAD;
     memcpy(&this->usb->tx_data.remote_ctrl,&this->rc->raw,sizeof(this->usb->tx_data.remote_ctrl));
-    //this->usb->tx_data.arm_pitch_joint = this->arm->actuator.
+    this->usb->tx_data.arm_pitch_joint = this->arm->current_joint.arm_pitch_joint;
+    this->usb->tx_data.arm_roll_joint = this->arm->current_joint.arm_roll_joint;
+    this->usb->tx_data.arm_yaw_joint = this->arm->current_joint.arm_yaw_joint;
+    this->usb->tx_data.extend_joint = this->arm->current_joint.extend_joint;
+    this->usb->tx_data.pitch_joint = this->arm->current_joint.pitch_joint;
+    this->usb->tx_data.roll_joint = this->arm->current_joint.roll_joint;
+    this->usb->tx_data.slide_joint = this->arm->current_joint.slide_joint;
+    this->usb->tx_data.uplift_joint = this->arm->current_joint.uplift_joint;
+    this->usb->tx_data.is_arm_pump_holding_on = this->can->rx_raw_data.is_arm_pump_holding_on;
+    this->usb->tx_data.is_left_pump_holding_on = this->can->rx_raw_data.is_left_pump_holding_on;
+    this->usb->tx_data.is_right_pump_holding_on = this->can->rx_raw_data.is_right_pump_holding_on;
     this->usb->tx_data.frame_tail = USB_FRAME_TAIL;
+}
+
+void Communication::Update_Lost_Flag()
+{
+    osStatus_t status = osSemaphoreAcquire(this->can->can_device.rx.semaphore,15);
+    if(status == osOK)
+    {
+        this->lost_flag = false;
+    }
+    else
+    {
+        this->lost_flag = true;
+    }
+}
+
+bool Communication::Check_Lost()
+{
+    return this->lost_flag;
+}
+
+void Communication::Send_MSG()
+{
+    this->can->can_device.send_can_msg();
+    this->usb->Transmit_Data();
 }
