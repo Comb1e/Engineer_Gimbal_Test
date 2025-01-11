@@ -36,6 +36,7 @@ void Comm_USB::Receive_Data()
 {
     if (USBD_OK == CDC_Receive_FS_Mine_Del((uint8_t *) &this->rx_raw, NULL))
     {
+        osSemaphoreRelease(USBUpdateBinarySemHandle);
         __NOP();
     }
     else
@@ -91,13 +92,16 @@ void Communication::Update_Data()
     this->usb->tx_data.is_arm_pump_holding_on = this->can->rx_raw_data.is_arm_pump_holding_on;
     this->usb->tx_data.is_left_pump_holding_on = this->can->rx_raw_data.is_left_pump_holding_on;
     this->usb->tx_data.is_right_pump_holding_on = this->can->rx_raw_data.is_right_pump_holding_on;
+    this->usb->tx_data.is_rc_online = !this->rc->is_lost;
+    this->usb->tx_data.chassis_gyro_totoal_rounds = this->can->rx_raw_data.chassis_gyro_totoal_rounds;
     this->usb->tx_data.frame_tail = USB_FRAME_TAIL;
 }
 
 void Communication::Update_Lost_Flag()
 {
-    osStatus_t status = osSemaphoreAcquire(this->can->can_device.rx.semaphore,15);
-    if(status == osOK)
+    osStatus_t status_can = osSemaphoreAcquire(this->can->can_device.rx.semaphore,15);
+    osStatus_t status_usb = osSemaphoreAcquire(USBUpdateBinarySemHandle,15);
+    if(status_can == osOK && status_usb == osOK)
     {
         this->lost_flag = false;
     }

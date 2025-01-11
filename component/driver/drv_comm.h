@@ -33,7 +33,8 @@ typedef struct
     uint8_t is_wheel_rb_lost : 1;
     uint8_t is_wheel_rf_lost : 1;
     uint8_t is_gimbal_slide_lost : 1;
-}can_rx_raw_data_t;//8位
+    float chassis_gyro_totoal_rounds;//底盘陀螺仪的yaw
+}can_rx_raw_data_t;//40位
 
 typedef struct
 {
@@ -68,7 +69,7 @@ typedef struct
     int16_t chassis_x;//合适的进制转换
     int16_t chassis_y;
     uint8_t frame_tail;
-}usb_rx_raw_t;
+}usb_rx_raw_t;//43
 
 typedef struct
 {
@@ -87,8 +88,11 @@ typedef struct
     uint8_t is_arm_pump_holding_on;
     uint8_t is_left_pump_holding_on;
     uint8_t is_right_pump_holding_on;
+
+    uint8_t is_rc_online;//关控保护
+    float chassis_gyro_totoal_rounds;//底盘陀螺仪的yaw
     uint8_t frame_tail;
-}usb_tx_t;
+}usb_tx_t;//55
 
 #pragma pack()
 

@@ -12,6 +12,7 @@ void communicationTask(void *argument)
 {
     communication.Init();
     communication.PTR_Init(&comm_can,&comm_usb,&g_arm,&g_rc);
+    osSemaphoreAcquire(USBUpdateBinarySemHandle,osWaitForever);
     communication.arm->Arm_init();
     communication.arm->set_arm_reset();
     set_blue_on();

@@ -276,6 +276,11 @@ osSemaphoreId_t armPitchDMBinarySemHandle;
 const osSemaphoreAttr_t armPitchDMBinarySem_attributes = {
   .name = "armPitchDMBinarySem"
 };
+/* Definitions for USBUpdateBinarySem */
+osSemaphoreId_t USBUpdateBinarySemHandle;
+const osSemaphoreAttr_t USBUpdateBinarySem_attributes = {
+  .name = "USBUpdateBinarySem"
+};
 /* Definitions for can1_tx_cnt_sem */
 osSemaphoreId_t can1_tx_cnt_semHandle;
 const osSemaphoreAttr_t can1_tx_cnt_sem_attributes = {
@@ -377,6 +382,9 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of armPitchDMBinarySem */
   armPitchDMBinarySemHandle = osSemaphoreNew(1, 1, &armPitchDMBinarySem_attributes);
+
+  /* creation of USBUpdateBinarySem */
+  USBUpdateBinarySemHandle = osSemaphoreNew(1, 0, &USBUpdateBinarySem_attributes);
 
   /* creation of can1_tx_cnt_sem */
   can1_tx_cnt_semHandle = osSemaphoreNew(3, 3, &can1_tx_cnt_sem_attributes);

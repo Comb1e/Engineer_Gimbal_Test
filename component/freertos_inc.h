@@ -36,6 +36,7 @@ extern osSemaphoreId_t can1_tx_cnt_semHandle;
 extern osSemaphoreId_t can2_tx_cnt_semHandle;
 extern osSemaphoreId_t armYawDMBinarySemHandle;
 extern osSemaphoreId_t armPitchDMBinarySemHandle;
+extern osSemaphoreId_t USBUpdateBinarySemHandle;
 
 extern osMessageQueueId_t can1SendQueueHandle;
 extern osMessageQueueId_t can2SendQueueHandle;
