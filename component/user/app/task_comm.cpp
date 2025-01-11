@@ -12,7 +12,13 @@ void communicationTask(void *argument)
 {
     communication.Init();
     communication.PTR_Init(&comm_can,&comm_usb,&g_arm,&g_rc);
-    osSemaphoreAcquire(USBUpdateBinarySemHandle,osWaitForever);
+
+    osStatus_t status = osSemaphoreAcquire(USBUpdateBinarySemHandle,15);
+    while(status != osOK)
+    {
+        status = osSemaphoreAcquire(USBUpdateBinarySemHandle,15);
+    }//接收到usb第一次消息开始下一步
+
     communication.arm->Arm_init();
     communication.arm->set_arm_reset();
     set_blue_on();

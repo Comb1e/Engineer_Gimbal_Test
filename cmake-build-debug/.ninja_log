@@ -234,3 +234,5 @@
 15	960	7583123449403245	CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/drv_comm.cpp.obj	61dd86d217f2e92b
 19	978	7583123449438309	CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/drv_framework.cpp.obj	bc66ba8b84f4db7a
 978	1162	7583123459031332	Engineer_Gimbal_Test.elf	adef1c811b322fc6
+16	833	7583128954274621	CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/app/task_comm.cpp.obj	15a77bcfff57b434
+834	999	7583128962452945	Engineer_Gimbal_Test.elf	adef1c811b322fc6
