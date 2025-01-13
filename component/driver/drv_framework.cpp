@@ -396,7 +396,8 @@ float Framework::get_framework_arm_pitch_deg(){
 }
 
 // ------------------------------------- IK ------------------------------------- //
-void Framework::framework_set_extend(float extend_mm) {
+void Framework::framework_set_extend(float extend_mm)
+{
     float speed_l_syn_master=0,speed_r_syn_follower=0,speed_l_set=0,speed_r_set=0;
     VAL_LIMIT(extend_mm, FRAME_EXTEND_MIN_MM, FRAME_EXTEND_MAX_MM);
     set_rounds.extend_l = FRAME_EXTEND_L_MIN_ROUNDS + (extend_mm - FRAME_EXTEND_MIN_MM) / (FRAME_EXTEND_MAX_MM - FRAME_EXTEND_MIN_MM) * (FRAME_EXTEND_L_MAX_ROUNDS - FRAME_EXTEND_L_MIN_ROUNDS);
@@ -500,7 +501,8 @@ void Framework::framework_set_extend_move(){
 void Framework::framework_set_slide_move(){
     slide.set_torque_to_can_tx_buff();
 }
-void Framework::framework_set_uplift_move(){
+void Framework::framework_set_uplift_move()
+{
     uplift_l.set_torque_to_can_tx_buff();
     uplift_r.set_torque_to_can_tx_buff();
 }
@@ -609,29 +611,33 @@ void Framework::extend_motors_protection()
 }
 
 //位置限制的需要进行复位则需要单独偏置(提前量好位置),如果是全自动的就是可以在这里面设置偏置,自动量好位置
-bool Framework::check_all_motors_safe(){
+bool Framework::check_all_motors_safe()
+{
     osStatus_t stat;
     //uplift
-    stat = osSemaphoreAcquire(uplift_l.can_dev.rx.semaphore,8);
-    if(stat != osOK) {
+    stat = osSemaphoreAcquire(uplift_l.can_dev.rx.semaphore,15);
+    if(stat != osOK)
+    {
         uplift_l.set_motor_lost();
-    }else{
+    }
+    else
+    {
         uplift_l.set_motor_connect();
     }
-    stat = osSemaphoreAcquire(uplift_r.can_dev.rx.semaphore,8);
+    stat = osSemaphoreAcquire(uplift_r.can_dev.rx.semaphore,15);
     if(stat != osOK) {
         uplift_r.set_motor_lost();
     }else{
         uplift_r.set_motor_connect();
     }
     //extend
-    stat = osSemaphoreAcquire(extend_l.can_dev.rx.semaphore,8);
+    stat = osSemaphoreAcquire(extend_l.can_dev.rx.semaphore,15);
     if(stat != osOK) {
         extend_l.set_motor_lost();
     }else{
         extend_l.set_motor_connect();
     }
-    stat = osSemaphoreAcquire(extend_r.can_dev.rx.semaphore,8);
+    stat = osSemaphoreAcquire(extend_r.can_dev.rx.semaphore,15);
     if(stat != osOK) {
         extend_r.set_motor_lost();
     }else{
@@ -645,7 +651,7 @@ bool Framework::check_all_motors_safe(){
         slide.set_motor_connect();
     }
     //arm_yaw_dm
-    stat = osSemaphoreAcquire(arm_yaw.can_dev.rx.semaphore, 12);
+    stat = osSemaphoreAcquire(arm_yaw.can_dev.rx.semaphore, 50);
     if(stat != osOK) {
         if(arm_yaw.is_enable){
             arm_yaw.set_motor_enable();
@@ -655,7 +661,7 @@ bool Framework::check_all_motors_safe(){
         arm_yaw.set_motor_connect();
     }
 
-    stat = osSemaphoreAcquire(arm_pitch.can_dev.rx.semaphore, 12);
+    stat = osSemaphoreAcquire(arm_pitch.can_dev.rx.semaphore, 50);
     if(stat != osOK) {
         if(arm_pitch.is_enable){
             arm_pitch.set_motor_enable();

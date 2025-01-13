@@ -43,6 +43,9 @@
 #define RC_ENABLE           1
 #define DJI_MOTOR_SERVICE   1
 
+/*----------TEST----------*/
+#define GC_COMMUNICATION_TEST 0
+
 /*---------------------------- C Scope --------------------------- */
 #ifdef __cplusplus
 extern "C" {

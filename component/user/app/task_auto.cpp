@@ -24,7 +24,6 @@ void autoCtrlTask(void *argument)
         {
             buzzer_on();
         }
-
         g_arm.is_none_of_peripheral_connect =
                    g_arm.framework.extend_l.is_motor_lost() && g_arm.framework.extend_r.is_motor_lost()
                 && g_arm.framework.uplift_l.is_motor_lost() && g_arm.framework.uplift_r.is_motor_lost()

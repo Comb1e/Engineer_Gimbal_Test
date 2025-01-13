@@ -168,6 +168,9 @@ int16_t signed_16(uint8_t *p);
 uint32_t unsigned_32(uint8_t *p);
 bool is_val_between(float val, float min, float max);
 
+extern float debug0;
+extern float debug1;
+
 #ifdef __cplusplus
 }
 #endif

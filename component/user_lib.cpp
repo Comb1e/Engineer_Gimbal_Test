@@ -4,6 +4,9 @@
 
 #include "user_lib.h"
 
+float debug0;
+float debug1;
+
 //Hal库时钟自己定为1000
 uint32_t get_time_us(void) {
     return TIM7->CNT;

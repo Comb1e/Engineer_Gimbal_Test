@@ -75,7 +75,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+  __HAL_RCC_SYSCLK_CONFIG(RCC_SYSCLKSOURCE_HSI);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -108,6 +108,7 @@ int main(void)
   MX_IWDG_Init();
   /* USER CODE BEGIN 2 */
   buzzer_init();
+
   /* USER CODE END 2 */
 
   /* Init scheduler */

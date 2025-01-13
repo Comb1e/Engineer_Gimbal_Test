@@ -125,8 +125,10 @@ void DJI_Motor_6020::DJI_Motor_6020_init(CAN_HandleTypeDef *hcan, uint32_t motor
 }
 
 
-void DJI_Motor::set_torque_to_can_tx_buff() {
+void DJI_Motor::set_torque_to_can_tx_buff()
+{
     uint8_t index = (id < 5 ? id : id - 4) * 2 - 1;
+
     can_dev.tx.buff[index-1] = high_byte(set_torque);
     can_dev.tx.buff[index] = low_byte(set_torque);
 }

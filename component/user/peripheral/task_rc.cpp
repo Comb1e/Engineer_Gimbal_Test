@@ -20,7 +20,7 @@ void rcReceiveTask(void *argument)
     for (;;)
     {
         dr16_start_receive_dma(&g_rc);
-        stat = osSemaphoreAcquire(dr16UpdateBinarySemHandle, 15);
+        stat = osSemaphoreAcquire(dr16UpdateBinarySemHandle, 100);
         if (stat == osOK)
         {
             if (rc_update(&g_rc))
@@ -37,7 +37,8 @@ void rcReceiveTask(void *argument)
 }
 
 //相当于HAL_UARTEx_RxEventCallback
-void dr16_update_callback(UART_HandleTypeDef *huart, uint16_t Size) {
+void dr16_update_callback(UART_HandleTypeDef *huart, uint16_t Size)
+{
     osSemaphoreRelease(dr16UpdateBinarySemHandle);
 }
 

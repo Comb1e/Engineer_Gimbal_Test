@@ -10,33 +10,31 @@
 
 void communicationTask(void *argument)
 {
-    communication.Init();
     communication.PTR_Init(&comm_can,&comm_usb,&g_arm,&g_rc);
-
-    osStatus_t status = osSemaphoreAcquire(USBUpdateBinarySemHandle,15);
-    while(status != osOK)
-    {
-        status = osSemaphoreAcquire(USBUpdateBinarySemHandle,15);
-    }//接收到usb第一次消息开始下一步
-
+    communication.Init();
     communication.arm->Arm_init();
+    communication.usb->Start_Receive_Data();
     communication.arm->set_arm_reset();
     set_blue_on();
+    osDelay(6000);
     for(;;)
     {
-        communication.Update_Lost_Flag();
-        if(communication.Check_Lost())
+        communication.arm->Update_Arm_Current_Position();
+        communication.usb->Update_RX_Data();
+        communication.Update_TX_Data();
+        communication.Update_USB_Lost_Flag();
+        if(communication.Check_USB_Lost_Flag())
         {
             set_blue_off();
+            communication.Update_Chassis_Control_RC();
+            debug0=5;
         }
         else
         {
-            communication.arm->Update_Arm_Current_Position();
-            communication.usb->Receive_Data();
-            communication.Update_Data();
-            communication.Send_MSG();
+            communication.Update_Arm_Control();
             set_blue_on();
         }
-        osDelay(4);
+        communication.Send_MSG();
+        osDelay(2);
     }
 }

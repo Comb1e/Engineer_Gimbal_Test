@@ -96,7 +96,7 @@ uint8_t CDC_Transmit_FS_Mine_Del(uint8_t* Buf, uint16_t Len);
 extern USBD_CDC_ItfTypeDef USBD_Interface_fops_FS;
 
 /* USER CODE BEGIN EXPORTED_VARIABLES */
-
+extern uint8_t usb_buf[43];
 /* USER CODE END EXPORTED_VARIABLES */
 
 /**

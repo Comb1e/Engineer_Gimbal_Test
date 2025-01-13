@@ -5,6 +5,8 @@
 #include "interface_can.h"
 #include <utility>
 
+#include "user_lib.h"
+
 CAN* CAN::can_device_list[2][MAX_CAN_DEV_NUM]={};
 uint32_t CAN::can1_filter[4]={};
 uint32_t CAN::can1_device_num=0;
@@ -129,12 +131,14 @@ void can1SendTask(void *argument){
 }
 
 uint32_t can2_send_ok = 0;
-void can2SendTask(void *argument){
+void can2SendTask(void *argument)
+{
     CAN::can_tx_t can_tx;
     uint32_t tx_mailbox;
     CAN_TxHeaderTypeDef TxMessage = {.IDE = CAN_ID_STD,.RTR = CAN_RTR_DATA};
 
-    for (;;) {
+    for (;;)
+    {
         osSemaphoreAcquire(can2_tx_cnt_semHandle,osWaitForever);
         osMessageQueueGet(can2SendQueueHandle,&can_tx,nullptr,osWaitForever);
         taskENTER_CRITICAL();
@@ -151,7 +155,7 @@ void can2SendTask(void *argument){
 
 void CAN::can_tx_add(uint32_t can_tx_stdid,uint8_t *tx_buff,uint8_t tx_len){
     tx.is_enable = true;
-    tx.stdid = can_tx_stdid;
+    this->tx.stdid = can_tx_stdid;
     tx.buff = tx_buff;
     tx.len = (tx_len>8)? 8:(tx_len<0)? 0:tx_len;
 }

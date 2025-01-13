@@ -17,10 +17,10 @@
 extern "C" {
 #endif
 
-#define USB_FRAME_HEAD 0x60
-#define USB_FRAME_TAIL 0x50
+#define USB_FRAME_HEAD 0x55
+#define USB_FRAME_TAIL 0xAA
 
-#define USB_INFO_TX_BUF_NUM 55
+#define USB_INFO_TX_BUF_NUM 60
 
 #pragma pack(1)
 typedef struct
@@ -92,7 +92,7 @@ typedef struct
     uint8_t is_rc_online;//关控保护
     float chassis_gyro_totoal_rounds;//底盘陀螺仪的yaw
     uint8_t frame_tail;
-}usb_tx_t;//55
+}usb_tx_t;//60
 
 #pragma pack()
 
@@ -114,7 +114,7 @@ public:
 
     void Init(CAN_HandleTypeDef *hcan);
 
-    friend void Comm_Can_RX_Callback(CAN *can_device,uint8_t *data);
+    void Comm_Can_RX_Callback(CAN *can_device,uint8_t *data);
 
     friend class Communication;
 };
@@ -128,13 +128,15 @@ public:
 
     bool is_enable = false;
     bool is_lost = true;
+    bool data_valid_flag;
 
     usb_rx_raw_t rx_raw={};
     usb_tx_t tx_data={};
 
     void Init();
-    void Receive_Data();
+    void Start_Receive_Data();
     void Transmit_Data();
+    void Update_RX_Data();
 
     friend class Communication;
 };
@@ -145,7 +147,8 @@ class Communication
 public:
     explicit Communication();
 
-    bool lost_flag;
+    bool usb_lost_flag;
+    bool can_lost_flag;
 
     Comm_CAN *can;
     Comm_USB *usb;
@@ -154,10 +157,14 @@ public:
 
     void PTR_Init(Comm_CAN *comm_can,Comm_USB *comm_usb,Arm *Arm,rc_device_t *rc);
     void Init();
-    void Update_Data();
-    void Update_Lost_Flag();
-    bool Check_Lost();
+    void Update_CAN_TX_Data();
+    void Update_TX_Data();
+    void Update_USB_Lost_Flag();
+    void Update_CAN_Lost_Flag();
+    bool Check_USB_Lost_Flag();
     void Send_MSG();
+    void Update_Arm_Control();
+    void Update_Chassis_Control_RC();
 };
 
 extern Comm_CAN comm_can;

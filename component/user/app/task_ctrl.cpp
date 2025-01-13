@@ -22,6 +22,11 @@
 //1 z
 void upliftCtrlTask(void *argument)
 {
+    while(!(communication.arm->is_all_peripheral_connect && communication.arm->is_init))
+    {
+        osDelay(1);
+    }
+    osDelay(200);
     communication.arm->framework.reset_step.uplift = 0;
     for(;;)
     {
@@ -50,6 +55,11 @@ void upliftCtrlTask(void *argument)
 //2 pitch
 void armPitchCtrlTask(void *argument)
 {
+    while(!(communication.arm->is_all_peripheral_connect && communication.arm->is_init))
+    {
+        osDelay(1);
+    }
+    osDelay(200);
     communication.arm->framework.reset_step.arm_pitch = 0;
     //先使能
     for(;;)
@@ -83,6 +93,11 @@ void armPitchCtrlTask(void *argument)
 //3 yaw
 void armYawCtrlTask(void *argument)
 {
+    while(!(communication.arm->is_all_peripheral_connect && communication.arm->is_init))
+    {
+        osDelay(1);
+    }
+    osDelay(200);
     communication.arm->framework.reset_step.arm_yaw = 0;
     //先使能
     for(;;){
@@ -115,6 +130,11 @@ void armYawCtrlTask(void *argument)
 //4 x
 void extendCtrlTask(void *argument)
 {
+    while(!(communication.arm->is_all_peripheral_connect && communication.arm->is_init))
+    {
+        osDelay(1);
+    }
+    osDelay(200);
     communication.arm->framework.reset_step.extend = 0;
     for(;;)
     {
@@ -140,6 +160,11 @@ void extendCtrlTask(void *argument)
 //4 y
 void slideCtrlTask(void *argument)
 {
+    while(!(communication.arm->is_all_peripheral_connect && communication.arm->is_init))
+    {
+        osDelay(1);
+    }
+    osDelay(200);
     communication.arm->framework.reset_step.slide = 0;
     for(;;)
     {
@@ -164,6 +189,11 @@ void slideCtrlTask(void *argument)
 //5 x1
 void armRollCtrlTask(void *argument)
 {
+    while(!(communication.arm->is_all_peripheral_connect && communication.arm->is_init))
+    {
+        osDelay(1);
+    }
+    osDelay(200);
     communication.arm->actuator.reset_step.arm_roll = 0;
     for(;;)
     {
@@ -186,6 +216,11 @@ void armRollCtrlTask(void *argument)
 //5 yx2
 void yX2CtrlTask(void *argument)
 {
+    while(!(communication.arm->is_all_peripheral_connect && communication.arm->is_init))
+    {
+        osDelay(1);
+    }
+    osDelay(200)        ;
     communication.arm->actuator.reset_step.y_x2 = 0;
     for(;;)
     {

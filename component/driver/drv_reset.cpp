@@ -25,7 +25,8 @@ void Framework::Uplift_Reset()
             {
                 break;
             }
-            if(this->uplift_up_movement_to_avoid_arm_clash(600)){//pid在计算
+            if(this->uplift_up_movement_to_avoid_arm_clash(600))
+            {//pid在计算
                 this->reset_step.uplift = 2;
                 this->is_uplift_up_movement_ok = true;
             }

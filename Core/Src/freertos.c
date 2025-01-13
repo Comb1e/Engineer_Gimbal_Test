@@ -27,11 +27,13 @@
 /* USER CODE BEGIN Includes */
 #include "stdbool.h"
 #include "iwdg.h"
+#include "user_lib.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-typedef struct {
+typedef struct
+{
   bool is_enable;
   uint8_t len;
   uint8_t *buff;
@@ -51,7 +53,7 @@ typedef struct {
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+uint32_t global_working_time = 0;
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
@@ -494,7 +496,10 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+    global_working_time = HAL_GetTick();
+    HAL_GPIO_TogglePin(LED_G_GPIO_Port,LED_G_Pin);
+    HAL_IWDG_Refresh(&hiwdg);//(625-1+1)*64/32000s
+    osDelay(200);
   }
   /* USER CODE END StartDefaultTask */
 }
