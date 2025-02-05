@@ -396,12 +396,9 @@
 				169,
 				171,
 				173,
-				192,
-				194,
-				196,
-				200,
-				204,
-				207
+				184,
+				186,
+				189
 			]
 		},
 		{
@@ -827,42 +824,33 @@
 				177,
 				179,
 				181,
-				183,
-				186,
-				188,
-				190,
-				198,
-				202,
+				191,
+				194,
+				196,
+				199,
+				201,
+				203,
+				205,
+				207,
 				209,
-				212,
-				214,
+				211,
+				213,
+				215,
 				217,
 				219,
 				221,
 				223,
-				225,
-				227,
-				229,
-				231,
-				233,
-				235,
-				237,
-				239,
-				241,
-				243,
-				245,
-				247,
-				250,
-				252,
-				254,
-				256,
-				258,
-				260,
-				262,
-				264,
-				266,
-				268,
-				270
+				226,
+				228,
+				230,
+				232,
+				234,
+				236,
+				238,
+				240,
+				242,
+				244,
+				246
 			]
 		}
 	],
@@ -1063,53 +1051,41 @@
 				178,
 				180,
 				182,
-				184,
+				183,
 				185,
 				187,
-				189,
-				191,
+				188,
+				190,
+				192,
 				193,
 				195,
 				197,
-				199,
-				201,
-				203,
-				205,
+				198,
+				200,
+				202,
+				204,
 				206,
 				208,
 				210,
-				211,
-				213,
-				215,
+				212,
+				214,
 				216,
 				218,
 				220,
 				222,
 				224,
-				226,
-				228,
-				230,
-				232,
-				234,
-				236,
-				238,
-				240,
-				242,
-				244,
-				246,
-				248,
-				249,
-				251,
-				253,
-				255,
-				257,
-				259,
-				261,
-				263,
-				265,
-				267,
-				269,
-				271
+				225,
+				227,
+				229,
+				231,
+				233,
+				235,
+				237,
+				239,
+				241,
+				243,
+				245,
+				247
 			]
 		},
 		{
@@ -1175,48 +1151,36 @@
 				177,
 				179,
 				181,
-				183,
+				184,
 				186,
-				188,
-				190,
-				192,
+				189,
+				191,
 				194,
 				196,
-				198,
-				200,
-				202,
-				204,
+				199,
+				201,
+				203,
+				205,
 				207,
 				209,
-				212,
-				214,
+				211,
+				213,
+				215,
 				217,
 				219,
 				221,
 				223,
-				225,
-				227,
-				229,
-				231,
-				233,
-				235,
-				237,
-				239,
-				241,
-				243,
-				245,
-				247,
-				250,
-				252,
-				254,
-				256,
-				258,
-				260,
-				262,
-				264,
-				266,
-				268,
-				270
+				226,
+				228,
+				230,
+				232,
+				234,
+				236,
+				238,
+				240,
+				242,
+				244,
+				246
 			]
 		},
 		{
@@ -1229,7 +1193,7 @@
 				100,
 				132,
 				166,
-				272
+				248
 			]
 		}
 	],
@@ -2202,17 +2166,6 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 2,
-			"path" : "bsp/drv_XGZP6847.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "bsp/drv_XGZP6847.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 2,
 			"path" : "bsp/interface_can.cpp",
 			"sourceGroupIndex" : 1
 		},
@@ -2228,39 +2181,6 @@
 		},
 		{
 			"backtrace" : 1,
-			"compileGroupIndex" : 2,
-			"path" : "component/Matrix_Robotics/matrix.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "component/Matrix_Robotics/matrix.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 2,
-			"path" : "component/Matrix_Robotics/robotics.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "component/Matrix_Robotics/robotics.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 2,
-			"path" : "component/Matrix_Robotics/utils.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "component/Matrix_Robotics/utils.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "component/algorithm/crc.c",
 			"sourceGroupIndex" : 1
@@ -2268,61 +2188,6 @@
 		{
 			"backtrace" : 1,
 			"path" : "component/algorithm/crc.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "component/algorithm/filters/biquad_filter.c",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "component/algorithm/filters/biquad_filter.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "component/algorithm/filters/filter_math.c",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "component/algorithm/filters/filter_math.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 2,
-			"path" : "component/algorithm/filters/kalman.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "component/algorithm/filters/kalman.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "component/algorithm/filters/kalman_filter.c",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "component/algorithm/filters/kalman_filter.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 2,
-			"path" : "component/algorithm/filters/slope.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "component/algorithm/filters/slope.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -2530,45 +2395,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 2,
-			"path" : "component/driver/motor/drv_HT_motor.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "component/driver/motor/drv_HT_motor.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 2,
-			"path" : "component/driver/motor/drv_Hiwonder_motor.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "component/driver/motor/drv_Hiwonder_motor.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 2,
 			"path" : "component/driver/motor/drv_motor.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"path" : "component/driver/motor/drv_motor.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 2,
-			"path" : "component/driver/robotics_math.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "component/driver/robotics_math.h",
 			"sourceGroupIndex" : 0
 		},
 		{

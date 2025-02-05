@@ -8,7 +8,6 @@
 /*---------------------------- C++ Scope ---------------------------*/
 #include "drv_actuator.h"
 #include "drv_framework.h"
-#include "robotics_math.h"
 #include "drv_dof.h"
 #include "user_lib.h"
 #include "GlobalCfg.h"
@@ -34,13 +33,6 @@ typedef struct
     float pitch_joint;
     float roll_joint;
 }arm_joint_t;
-
-typedef struct
-{
-    float dist;
-    bool is_good;
-    Eigen::Vector3f deg;
-}MulSolu_search_t;
 
 class Arm
 {
