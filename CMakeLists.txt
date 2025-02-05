@@ -89,12 +89,6 @@ set(DSP ${CMAKE_SOURCE_DIR}/CMSIS-DSP)
 include_directories(${DSP}/Include)
 add_subdirectory(${DSP}/Source bin_dsp)
 
-#Eigen
-include_directories(/)
-include_directories(Eigen)
-#find_package (Eigen3 REQUIRED)
-#link_libraries(Eigen3::Eigen)
-
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32F407IGHX_FLASH.ld)
 
 add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)

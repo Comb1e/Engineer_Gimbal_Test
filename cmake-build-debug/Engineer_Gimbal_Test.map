@@ -3241,27 +3241,6 @@ Discarded input sections
                 0x00000000        0x0 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/motor/drv_motor.cpp.obj
  .ARM.exidx.text._ZN5Motor16set_motor_offsetEf
                 0x00000000        0x8 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/motor/drv_motor.cpp.obj
- .text          0x00000000        0x0 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/my_init.cpp.obj
- .data          0x00000000        0x0 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/my_init.cpp.obj
- .bss           0x00000000        0x0 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/my_init.cpp.obj
- .text.InitCreateTask
-                0x00000000        0x2 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/my_init.cpp.obj
- .ARM.extab.text.InitCreateTask
-                0x00000000        0x0 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/my_init.cpp.obj
- .ARM.exidx.text.InitCreateTask
-                0x00000000        0x8 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/my_init.cpp.obj
- .debug_info    0x00000000     0x1554 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/my_init.cpp.obj
- .debug_abbrev  0x00000000      0x13a CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/my_init.cpp.obj
- .debug_aranges
-                0x00000000       0x20 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/my_init.cpp.obj
- .debug_rnglists
-                0x00000000       0x13 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/my_init.cpp.obj
- .debug_line    0x00000000      0x246 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/my_init.cpp.obj
- .debug_str     0x00000000      0xc29 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/my_init.cpp.obj
- .comment       0x00000000       0x46 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/my_init.cpp.obj
- .debug_frame   0x00000000       0x20 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/my_init.cpp.obj
- .ARM.attributes
-                0x00000000       0x34 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/my_init.cpp.obj
  .text          0x00000000        0x0 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/app/RC_Control_Task.cpp.obj
  .data          0x00000000        0x0 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/app/RC_Control_Task.cpp.obj
  .bss           0x00000000        0x0 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/app/RC_Control_Task.cpp.obj
@@ -4495,7 +4474,6 @@ LOAD CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/drv_reset.cpp.obj
 LOAD CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/motor/drv_DJI_motor.cpp.obj
 LOAD CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/motor/drv_DM_motor.cpp.obj
 LOAD CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/motor/drv_motor.cpp.obj
-LOAD CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/my_init.cpp.obj
 LOAD CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/app/RC_Control_Task.cpp.obj
 LOAD CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/app/task_auto.cpp.obj
 LOAD CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/app/task_comm.cpp.obj
@@ -10342,7 +10320,7 @@ LOAD E:/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb
  .debug_rnglists
                 0x000025e2       0x67 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user_lib.cpp.obj
 
-.debug_line     0x00000000    0x366b3
+.debug_line     0x00000000    0x366b9
  .debug_line    0x00000000      0x49b CMakeFiles/Engineer_Gimbal_Test.elf.dir/Core/Src/can.c.obj
  .debug_line    0x0000049b      0x1d3 CMakeFiles/Engineer_Gimbal_Test.elf.dir/Core/Src/dma.c.obj
  .debug_line    0x0000066e      0x7bb CMakeFiles/Engineer_Gimbal_Test.elf.dir/Core/Src/freertos.c.obj
@@ -10392,29 +10370,29 @@ LOAD E:/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb
  .debug_line    0x000244eb      0x292 CMakeFiles/Engineer_Gimbal_Test.elf.dir/bsp/bsp_led.cpp.obj
  .debug_line    0x0002477d      0x3b6 CMakeFiles/Engineer_Gimbal_Test.elf.dir/bsp/bsp_usart.cpp.obj
  .debug_line    0x00024b33      0xd4f CMakeFiles/Engineer_Gimbal_Test.elf.dir/bsp/interface_can.cpp.obj
- .debug_line    0x00025882      0x186 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/algorithm/crc.c.obj
- .debug_line    0x00025a08      0x3a0 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/algorithm/pid.c.obj
- .debug_line    0x00025da8      0xc65 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/IMU/drv_hi229um.cpp.obj
- .debug_line    0x00026a0d      0x7c7 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/IMU/drv_imu.cpp.obj
- .debug_line    0x000271d4     0x1093 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/drv_actuator.cpp.obj
- .debug_line    0x00028267      0xf36 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/drv_arm.cpp.obj
- .debug_line    0x0002919d      0x29a CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/drv_buzzer.cpp.obj
- .debug_line    0x00029437     0x1004 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/drv_comm.cpp.obj
- .debug_line    0x0002a43b      0xe88 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/drv_dr16.cpp.obj
- .debug_line    0x0002b2c3     0x1c93 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/drv_framework.cpp.obj
- .debug_line    0x0002cf56     0x1040 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/drv_reset.cpp.obj
- .debug_line    0x0002df96     0x137c CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/motor/drv_DJI_motor.cpp.obj
- .debug_line    0x0002f312     0x191c CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/motor/drv_DM_motor.cpp.obj
- .debug_line    0x00030c2e      0x650 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/motor/drv_motor.cpp.obj
- .debug_line    0x0003127e      0x76f CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/app/RC_Control_Task.cpp.obj
- .debug_line    0x000319ed      0x7d4 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/app/task_auto.cpp.obj
- .debug_line    0x000321c1      0x84c CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/app/task_comm.cpp.obj
- .debug_line    0x00032a0d      0xc93 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/app/task_ctrl.cpp.obj
- .debug_line    0x000336a0     0x12b0 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/app/task_test.cpp.obj
- .debug_line    0x00034950      0x7b4 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/peripheral/task_IMU.cpp.obj
- .debug_line    0x00035104      0x896 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/peripheral/task_motor.cpp.obj
- .debug_line    0x0003599a      0x6f0 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/peripheral/task_rc.cpp.obj
- .debug_line    0x0003608a      0x629 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user_lib.cpp.obj
+ .debug_line    0x00025882      0x18c CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/algorithm/crc.c.obj
+ .debug_line    0x00025a0e      0x3a0 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/algorithm/pid.c.obj
+ .debug_line    0x00025dae      0xc65 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/IMU/drv_hi229um.cpp.obj
+ .debug_line    0x00026a13      0x7c7 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/IMU/drv_imu.cpp.obj
+ .debug_line    0x000271da     0x1093 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/drv_actuator.cpp.obj
+ .debug_line    0x0002826d      0xf36 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/drv_arm.cpp.obj
+ .debug_line    0x000291a3      0x29a CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/drv_buzzer.cpp.obj
+ .debug_line    0x0002943d     0x1004 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/drv_comm.cpp.obj
+ .debug_line    0x0002a441      0xe88 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/drv_dr16.cpp.obj
+ .debug_line    0x0002b2c9     0x1c93 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/drv_framework.cpp.obj
+ .debug_line    0x0002cf5c     0x1040 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/drv_reset.cpp.obj
+ .debug_line    0x0002df9c     0x137c CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/motor/drv_DJI_motor.cpp.obj
+ .debug_line    0x0002f318     0x191c CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/motor/drv_DM_motor.cpp.obj
+ .debug_line    0x00030c34      0x650 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/driver/motor/drv_motor.cpp.obj
+ .debug_line    0x00031284      0x76f CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/app/RC_Control_Task.cpp.obj
+ .debug_line    0x000319f3      0x7d4 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/app/task_auto.cpp.obj
+ .debug_line    0x000321c7      0x84c CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/app/task_comm.cpp.obj
+ .debug_line    0x00032a13      0xc93 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/app/task_ctrl.cpp.obj
+ .debug_line    0x000336a6     0x12b0 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/app/task_test.cpp.obj
+ .debug_line    0x00034956      0x7b4 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/peripheral/task_IMU.cpp.obj
+ .debug_line    0x0003510a      0x896 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/peripheral/task_motor.cpp.obj
+ .debug_line    0x000359a0      0x6f0 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user/peripheral/task_rc.cpp.obj
+ .debug_line    0x00036090      0x629 CMakeFiles/Engineer_Gimbal_Test.elf.dir/component/user_lib.cpp.obj
 
 .debug_str      0x00000000    0x150de
  .debug_str     0x00000000    0x150de CMakeFiles/Engineer_Gimbal_Test.elf.dir/Core/Src/can.c.obj
