@@ -4,6 +4,8 @@
 
 #include "drv_dr16.h"
 
+#include "drv_comm.h"
+
 uint8_t dr16_buff[DR16_BUFF_LEN] = {0};
 rc_device_t g_rc={.is_lost = true};
 extern lost_num_t g_lost_num;

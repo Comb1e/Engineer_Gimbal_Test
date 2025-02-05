@@ -45,6 +45,7 @@ typedef struct
     uint8_t is_arm_pump_open : 1;
     uint8_t is_left_pump_open : 1;
     uint8_t is_right_pump_open : 1;
+    uint8_t is_usb_lost : 1;
 }can_tx_data_t;//44位
 
 typedef struct
@@ -149,6 +150,7 @@ public:
 
     bool usb_lost_flag;
     bool can_lost_flag;
+    bool rc_control_flag;
 
     Comm_CAN *can;
     Comm_USB *usb;
@@ -164,7 +166,9 @@ public:
     bool Check_USB_Lost_Flag();
     void Send_MSG();
     void Update_Arm_Control();
-    void Update_Chassis_Control_RC();
+    void Set_Chassis_Control_RC();
+    void Update_RC_Control();
+    void Set_Chassis_Control_USB();
 };
 
 extern Comm_CAN comm_can;

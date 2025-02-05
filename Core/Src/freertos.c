@@ -188,6 +188,13 @@ const osThreadAttr_t armPitchCtrl_attributes = {
   .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
+/* Definitions for rc_control_Task */
+osThreadId_t rc_control_TaskHandle;
+const osThreadAttr_t rc_control_Task_attributes = {
+  .name = "rc_control_Task",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
 /* Definitions for can1SendQueue */
 osMessageQueueId_t can1SendQueueHandle;
 const osMessageQueueAttr_t can1SendQueue_attributes = {
@@ -318,6 +325,7 @@ void yX2CtrlTask(void *argument);
 void djiMotorServiceTask(void *argument);
 void XGZP6847Task(void *argument);
 void armPitchCtrlTask(void *argument);
+void RC_Control_Task(void *argument);
 
 extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -470,6 +478,9 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of armPitchCtrl */
   armPitchCtrlHandle = osThreadNew(armPitchCtrlTask, NULL, &armPitchCtrl_attributes);
+
+  /* creation of rc_control_Task */
+  rc_control_TaskHandle = osThreadNew(RC_Control_Task, NULL, &rc_control_Task_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -826,6 +837,24 @@ __weak void armPitchCtrlTask(void *argument)
     osDelay(1);
   }
   /* USER CODE END armPitchCtrlTask */
+}
+
+/* USER CODE BEGIN Header_RC_Control_Task */
+/**
+* @brief Function implementing the rc_control_Task thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_RC_Control_Task */
+__weak void RC_Control_Task(void *argument)
+{
+  /* USER CODE BEGIN RC_Control_Task */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END RC_Control_Task */
 }
 
 /* Private application code --------------------------------------------------*/

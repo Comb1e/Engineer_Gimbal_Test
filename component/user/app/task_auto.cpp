@@ -16,14 +16,14 @@ void autoCtrlTask(void *argument)
         g_arm.is_all_peripheral_connect = g_arm.framework.is_all_motors_safe && g_arm.actuator.is_all_motors_safe && !g_arm.actuator.arm_roll_IMU.is_imu_lost();
         g_arm.check_motors_overheat();
 
-        if(g_arm.is_all_peripheral_connect)
+        /*if(g_arm.is_all_peripheral_connect)
         {
             buzzer_off();
         }
         else
         {
             buzzer_on();
-        }
+        }*/
         g_arm.is_none_of_peripheral_connect =
                    g_arm.framework.extend_l.is_motor_lost() && g_arm.framework.extend_r.is_motor_lost()
                 && g_arm.framework.uplift_l.is_motor_lost() && g_arm.framework.uplift_r.is_motor_lost()

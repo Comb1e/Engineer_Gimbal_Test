@@ -45,6 +45,7 @@
 
 /*----------TEST----------*/
 #define GC_COMMUNICATION_TEST 0
+#define ARM_CAN_OPEN 1
 
 /*---------------------------- C Scope --------------------------- */
 #ifdef __cplusplus

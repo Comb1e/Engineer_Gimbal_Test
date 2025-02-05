@@ -46,7 +46,9 @@ void upliftCtrlTask(void *argument)
         {
             communication.arm->framework.framework_set_uplift(communication.arm->set_joint.uplift_joint);
         }
+#if ARM_CAN_OPEN
         communication.arm->framework.framework_set_uplift_move();
+#endif
         osDelay(3);
     }
 }
@@ -55,6 +57,7 @@ void upliftCtrlTask(void *argument)
 //2 pitch
 void armPitchCtrlTask(void *argument)
 {
+    osDelay(1000);
     while(!(communication.arm->is_all_peripheral_connect && communication.arm->is_init))
     {
         osDelay(1);
@@ -80,7 +83,10 @@ void armPitchCtrlTask(void *argument)
         }
         if(communication.arm->framework.arm_pitch.recover_the_motor()==false)
         {
+#if ARM_CAN_OPEN
             communication.arm->framework.framework_set_arm_pitch_move();
+#endif
+
         }
 //        else{
 //            communication.arm->framework.set_arm_pitch_reset();
@@ -93,6 +99,8 @@ void armPitchCtrlTask(void *argument)
 //3 yaw
 void armYawCtrlTask(void *argument)
 {
+    osDelay(1000);
+
     while(!(communication.arm->is_all_peripheral_connect && communication.arm->is_init))
     {
         osDelay(1);
@@ -117,7 +125,9 @@ void armYawCtrlTask(void *argument)
         }
         if(communication.arm->framework.arm_yaw.recover_the_motor()==false)
         {
+#if ARM_CAN_OPEN
             communication.arm->framework.framework_set_arm_yaw_move();
+#endif
         }
 //        else{
 //            this->set_arm_yaw_reset();
@@ -130,6 +140,8 @@ void armYawCtrlTask(void *argument)
 //4 x
 void extendCtrlTask(void *argument)
 {
+    osDelay(1000);
+
     while(!(communication.arm->is_all_peripheral_connect && communication.arm->is_init))
     {
         osDelay(1);
@@ -152,7 +164,9 @@ void extendCtrlTask(void *argument)
             communication.arm->framework.framework_set_extend(communication.arm->set_joint.extend_joint);
         }
         communication.arm->framework.extend_motors_protection();
+#if ARM_CAN_OPEN
         communication.arm->framework.framework_set_extend_move();
+#endif
         osDelay(3);
     }
 }
@@ -160,6 +174,8 @@ void extendCtrlTask(void *argument)
 //4 y
 void slideCtrlTask(void *argument)
 {
+    osDelay(1000);
+
     while(!(communication.arm->is_all_peripheral_connect && communication.arm->is_init))
     {
         osDelay(1);
@@ -180,7 +196,9 @@ void slideCtrlTask(void *argument)
         {
             communication.arm->framework.framework_set_slide(communication.arm->set_joint.slide_joint);
         }
+#if ARM_CAN_OPEN
         communication.arm->framework.framework_set_slide_move();
+#endif
         osDelay(3);
     }
 }
@@ -189,6 +207,8 @@ void slideCtrlTask(void *argument)
 //5 x1
 void armRollCtrlTask(void *argument)
 {
+    osDelay(1000);
+
     while(!(communication.arm->is_all_peripheral_connect && communication.arm->is_init))
     {
         osDelay(1);
@@ -209,13 +229,17 @@ void armRollCtrlTask(void *argument)
         {
             communication.arm->actuator.actuator_set_x1(communication.arm->set_joint.arm_roll_joint);
         }
+#if ARM_CAN_OPEN
         communication.arm->actuator.actuator_set_x1_move();
+#endif
         osDelay(3);
     }
 }
 //5 yx2
 void yX2CtrlTask(void *argument)
 {
+    osDelay(1000);
+
     while(!(communication.arm->is_all_peripheral_connect && communication.arm->is_init))
     {
         osDelay(1);
@@ -237,7 +261,9 @@ void yX2CtrlTask(void *argument)
         {
             communication.arm->actuator.actuator_set_y_x2(communication.arm->set_joint.pitch_joint, communication.arm->set_joint.roll_joint);
         }
+#if ARM_CAN_OPEN
         communication.arm->actuator.actuator_set_y_x2_move();
+#endif
         osDelay(3);
     }
 }

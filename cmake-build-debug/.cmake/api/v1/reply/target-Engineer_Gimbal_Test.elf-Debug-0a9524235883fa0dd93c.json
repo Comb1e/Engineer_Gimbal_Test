@@ -861,7 +861,8 @@
 				262,
 				264,
 				266,
-				268
+				268,
+				270
 			]
 		}
 	],
@@ -1107,7 +1108,8 @@
 				263,
 				265,
 				267,
-				269
+				269,
+				271
 			]
 		},
 		{
@@ -1213,7 +1215,8 @@
 				262,
 				264,
 				266,
-				268
+				268,
+				270
 			]
 		},
 		{
@@ -1226,7 +1229,7 @@
 				100,
 				132,
 				166,
-				270
+				272
 			]
 		}
 	],
@@ -2582,6 +2585,17 @@
 		{
 			"backtrace" : 1,
 			"path" : "component/my_init.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 2,
+			"path" : "component/user/app/RC_Control_Task.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "component/user/app/RC_Control_Task.h",
 			"sourceGroupIndex" : 0
 		},
 		{

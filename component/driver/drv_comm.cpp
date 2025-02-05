@@ -70,7 +70,7 @@ void Comm_USB::Update_RX_Data()
 
 Communication::Communication()
 {
-
+    this->rc_control_flag = false;
 }
 
 void Communication::PTR_Init(Comm_CAN *comm_can,Comm_USB *comm_usb,Arm *arm,rc_device_t *rc)
@@ -96,6 +96,7 @@ void Communication::Update_CAN_TX_Data()
     this->can->tx_data.is_left_pump_open = this->usb->rx_raw.is_left_pump_open;
     this->can->tx_data.is_right_pump_open = this->usb->rx_raw.is_right_pump_open;
     this->can->tx_data.is_chassis_vel_control = this->usb->rx_raw.is_chassis_vel_control;
+    this->can->tx_data.is_usb_lost = false;
 }
 
 
@@ -147,21 +148,9 @@ void Communication::Update_CAN_Lost_Flag()
     }
 }
 
-void Communication::Update_Chassis_Control_RC()
+void Communication::Set_Chassis_Control_RC()
 {
-    /*this->can->tx_data.chassis_spin = this->rc->rc_info.rocker.right_x;
-    this->can->tx_data.chassis_x = this->rc->rc_info.rocker.left_y;
-    this->can->tx_data.chassis_y = -this->rc->rc_info.rocker.left_x;*/
-    this->can->tx_data.chassis_spin = 0;
-    this->can->tx_data.chassis_x = 0;
-    this->can->tx_data.chassis_y = 0;
-    this->can->tx_data.is_arm_pump_open = 0;
-    this->can->tx_data.is_left_pump_open = 0;
-    this->can->tx_data.is_right_pump_open = 0;
-    this->can->tx_data.is_chassis_vel_control = 0;
-    /*
-    this->can->tx_data.is_chassis_vel_control = 1;
-*/
+    this->rc_control_flag = true;
 }
 
 
@@ -186,4 +175,30 @@ void Communication::Update_Arm_Control()
     this->arm->set_joint.roll_joint = this->usb->rx_raw.roll_joint;
     this->arm->set_joint.slide_joint = this->usb->rx_raw.slide_joint;
     this->arm->set_joint.uplift_joint = this->usb->rx_raw.uplift_joint;
+}
+
+void Communication::Update_RC_Control()
+{
+    if(!g_rc.is_lost)
+    {
+        communication.can->tx_data.chassis_spin = communication.rc->rc_info.rocker.right_x * INT8_MAX;
+        communication.can->tx_data.chassis_x = communication.rc->rc_info.rocker.left_y * INT16_MAX;
+        communication.can->tx_data.chassis_y = -communication.rc->rc_info.rocker.left_x * INT16_MAX;
+    }
+    else
+    {
+        communication.can->tx_data.chassis_spin = 0;
+        communication.can->tx_data.chassis_x = 0;
+        communication.can->tx_data.chassis_y = 0;
+    }
+    communication.can->tx_data.is_arm_pump_open = 0;
+    communication.can->tx_data.is_left_pump_open = 0;
+    communication.can->tx_data.is_right_pump_open = 0;
+
+    communication.can->tx_data.is_chassis_vel_control = 1;
+}
+
+void Communication::Set_Chassis_Control_USB()
+{
+    this->rc_control_flag = false;
 }

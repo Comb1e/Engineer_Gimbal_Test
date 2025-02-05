@@ -6,6 +6,10 @@
 
 void Framework::Uplift_Reset()
 {
+    if(this->uplift_l.is_lost || this->uplift_r.is_lost)
+    {
+        return;
+    }
     switch(this->reset_step.uplift)
     {
         case 0:
@@ -50,7 +54,7 @@ void Framework::Uplift_Reset()
         }
         case 3:
         {
-            this->framework_set_uplift(15);//pid 在计算
+            this->framework_set_uplift(10);//pid 在计算
             if(this->is_framework_in_set_uplift())
             {
                 this->is_uplift_initial = true;
@@ -62,7 +66,7 @@ void Framework::Uplift_Reset()
         {
             if(communication.arm->is_arm_at_initial_pos())
             {
-                this->framework_set_uplift(communication.arm->set_joint.uplift_joint);
+                this->framework_set_uplift(10.0f);
                 if(this->is_framework_in_set_uplift())
                 {
                     this->set_uplift_running_pid();
@@ -72,7 +76,7 @@ void Framework::Uplift_Reset()
             }
             else
             {
-                this->framework_set_uplift(15);
+                this->framework_set_uplift(10);
             }
             break;
         }
@@ -127,7 +131,7 @@ void Framework::Arm_Pitch_Reset()
         {
             if(communication.arm->is_arm_at_initial_pos())
             {
-                this->framework_set_arm_pitch(communication.arm->set_joint.arm_pitch_joint);
+                this->framework_set_arm_pitch(0.0f);
                 if(this->is_framework_in_set_arm_pitch())
                 {
                     this->set_arm_pitch_dm_running_pid();
@@ -199,7 +203,7 @@ void Framework::Arm_Yaw_Reset()
         {
             if(communication.arm->is_arm_at_initial_pos())
             {
-                this->framework_set_arm_yaw(communication.arm->set_joint.arm_yaw_joint);
+                this->framework_set_arm_yaw(0.0f);
                 if(this->is_framework_in_set_arm_yaw())
                 {
                     this->set_arm_yaw_dm_running_pid();
@@ -257,7 +261,7 @@ void Framework::Extend_Reset()
         }
         case 2:
         {
-            this->framework_set_extend(50.0f);
+            this->framework_set_extend(15.0f);
             if(this->is_framework_in_set_extend())
             {
                 this->is_extend_initial = true;
@@ -269,17 +273,18 @@ void Framework::Extend_Reset()
         {
             if(communication.arm->is_arm_at_initial_pos())
             {
-                this->framework_set_extend(communication.arm->set_joint.extend_joint);
+                this->framework_set_extend(15.0f);
                 if(this->is_framework_in_set_extend())
                 {
                     this->set_extend_running_pid();
+                    this->framework_set_extend(15.0f);
                     this->is_extend_need_reset = false;
                     this->reset_step.extend = 0;
                 }
             }
             else
             {
-                this->framework_set_extend(50.0f);
+                this->framework_set_extend(15.0f);
             }
             break;
         }
@@ -292,6 +297,7 @@ void Framework::Extend_Reset()
 
 void Framework::Slide_Reset()
 {
+
     switch(this->reset_step.slide)
     {
         case 0:
@@ -337,7 +343,7 @@ void Framework::Slide_Reset()
         {
             if(communication.arm->is_arm_at_initial_pos())
             {
-                this->framework_set_slide(communication.arm->set_joint.slide_joint);
+                this->framework_set_slide(FRAME_SLIDE_MAX_MM/2);
                 if(this->is_framework_in_set_slide())
                 {
                     this->set_slide_running_pid();
@@ -409,7 +415,7 @@ void Actuator::Arm_Roll_Reset()
         {
             if(communication.arm->is_arm_at_initial_pos())
             {
-                this->actuator_set_x1(communication.arm->set_joint.arm_roll_joint);
+                this->actuator_set_x1(0.0f);
                 if(this->is_actuator_in_set_x1())
                 {
                     this->set_x1_running_pid();
@@ -483,7 +489,7 @@ void Actuator::Y_X2_Reset()
         {
             if(g_arm.is_arm_at_initial_pos())
             {
-                this->actuator_set_y_x2(communication.arm->set_joint.pitch_joint, communication.arm->set_joint.roll_joint);
+                this->actuator_set_y_x2(0.0f, 0.0f);
                 if(this->is_actuator_in_set_y_x2())
                 {
                     this->set_y_x2_running_pid();

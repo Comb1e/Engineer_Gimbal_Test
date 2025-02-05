@@ -4,6 +4,8 @@
 
 #include "task_rc.h"
 
+#include "drv_comm.h"
+
 #if RC_ENABLE
 
 uint32_t rc_error_cnt = 0;
